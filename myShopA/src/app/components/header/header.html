@@ -1,0 +1,48 @@
+<header>
+    <!-- Titre Principal -->
+    <h1>{{title}}</h1>
+    <!-- Menu de navigation simple -->
+    <ul>
+        <li>
+            <a routerLink="/">Acceuil</a>
+        </li>
+        <li>
+            <a routerLink="/about">A propos</a>
+        </li>
+        <li>
+            <a routerLink="/products">Produits</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dashboard
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" routerLink="/addProduct">Add product</a></li>
+            <li><a class="dropdown-item" routerLink="/dashboard">Admin</a></li>
+          </ul>
+        </li>
+        <!-- Si utilisateur NON connecté -->
+         @if (!getConnectedUser()) {
+        <li>
+            <a routerLink="/signup">Inscription</a>
+        </li>
+        <li>
+            <a routerLink="/login">Connexion</a>
+        </li>
+        }
+        <li>
+            <a href="">Contact</a>
+        </li>
+         @if (getConnectedUser()) {
+        <li class="user-menu">
+            <span>Bonjour {{getConnectedUser().userName}}</span>
+            <a routerLink="">
+                <i class="fa-solid fa-cart-arrow-down" title="Voir mon panier"></i>
+            </a>
+            <button>
+                Déconnexion
+            </button>
+        </li>
+        }
+    </ul>
+</header>

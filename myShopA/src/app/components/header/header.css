@@ -1,0 +1,6 @@
+.user-menu{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-left: 100px;
+}

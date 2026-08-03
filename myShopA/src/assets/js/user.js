@@ -1,0 +1,117 @@
+class Utilisateur {
+    constructor(nom, email, mdp, genre, interets, pays, role){
+        this.nom = nom;
+        this.email = email;
+        this.mdp = mdp;
+        this.genre = genre;
+        this.interets = interets;
+        this.pays = pays;
+        this.role = role;
+    }
+}
+
+function ajouterAdmin() {
+    let admin = new Utilisateur("Admin", "admin@gmail.com", "admin123", "homme", [], "Tunisie", "admin");
+
+    let utilisateurs = JSON.parse(localStorage.getItem("utilisateurs")) || [];
+
+        for (let i = 0; i < utilisateurs.length; i++) {
+            if (utilisateurs[i].email == admin.email) return;
+        }
+
+    utilisateurs.push(admin);
+    localStorage.setItem("utilisateurs", JSON.stringify(utilisateurs));
+}
+
+function sInscrire() {
+    const inscriptionForm = document.getElementById("inscription-form");
+    if (!inscriptionForm) return;
+    console.log(inscriptionForm);
+   
+ 
+    inscriptionForm.addEventListener("submit", function(event){
+        event.preventDefault();
+     
+ 
+        let nom = document.getElementById("nom").value;
+        let prenom = document.getElementById("prenom").value;
+        let tel = document.getElementById("tel").value;
+        let email = document.getElementById("email").value;
+        let mdp = document.getElementById("mdp").value;
+        let confirmMdp = document.getElementById("confirmMdp").value;
+ 
+        //vérification mot de passe
+ 
+        if (mdp !== confirmMdp){
+            alert("Mot de passe ne correspondent pas !");
+            return;
+        }
+ 
+        let genre = document.querySelector('input[name=genre]:checked').value;
+ 
+        let interets = [];
+        let interetsChecked = document.querySelectorAll('input[name=interets]:checked');
+ 
+        //utilisation de la boucle pour la recuperation des elements de type interets, afin de faire une selection multiple
+ 
+        for (let i = 0; i < interetsChecked.length; i++) {
+            interets.push(interetsChecked[i].value);
+           
+        }
+ 
+        let pays = document.getElementById("pays").value;
+        //client = role
+        let utilisateur = new Utilisateur(nom, email, mdp, genre, interets, pays, "client");
+       
+ 
+        const utilisateurs = JSON.parse(localStorage.getItem("utilisateurs")) || [];
+        utilisateurs.push(utilisateur);
+        //Sauvegarde dans le local Storage
+        localStorage.setItem("utilisateurs", JSON.stringify(utilisateurs));
+ 
+        inscriptionForm.reset();
+         
+ 
+        console.log(nom, prenom, tel ,email, mdp, genre, interetsChecked);
+        alert("Compte crée avec succés !");
+ 
+    })
+};
+
+function seConnecter() {
+    const connexionForm = document.getElementById("connexion-form");
+    if (!connexionForm) return;
+
+    connexionForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        let email = document.getElementById("email").value;
+        let mdp = document.getElementById("password").value;
+
+        const utilisateurs = JSON.parse(localStorage.getItem("utilisateurs")) || [];
+
+        for(let utilisateur of utilisateurs) {
+            if (utilisateur.email === email && utilisateur.mdp === mdp) {
+                //Redirection selon le role
+                // if (utilisateur.role === "admin") {
+                //     window.location.href = "addProduct.html";
+                //     return;
+                // } else {
+                //     window.location.href = "/index.html";
+                //     return;
+                // }
+
+                // Opérateur Ternaire
+                window.location.href = utilisateur.role == "admin" ? "addProduct.html" : "/index.html";
+                return;
+            }
+        };
+        alert("Email ou Mot de passe incorrect !");
+        
+    });
+
+}
+
+ajouterAdmin();
+sInscrire();
+seConnecter();

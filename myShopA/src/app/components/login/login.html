@@ -1,0 +1,48 @@
+<main>
+    <!-- Formulaire -->
+    <form class="formulaire" id="connexion-form" [formGroup]="loginForm" (ngSubmit)="login()">
+        <h2>Connexion</h2>
+        <div>
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" formControlName="email" placeholder="exemple@gmail.com" required>
+            <!-- msg erreur -->
+             @if(loginForm.get('email')?.invalid && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)){
+                @if (loginForm.get('email')?.errors?.['required']){
+                    <div class="text-danger">
+                        Ce champ est obligatoire
+                    </div>
+                }
+                @else if (loginForm.get('email')?.errors?.['email']) {
+                    <div class="text-danger">
+                        Il faut entrer un email valid
+                    </div>
+                }
+             }
+        </div>
+
+        <div class="form-group">
+            <label for="password" class="form-label">Mot de passe :</label>
+            <input type="password" id="password" name="password" formControlName="pwd" placeholder="Votre mot de passe" required>
+             <!-- msg erreur -->
+             @if(loginForm.get('pwd')?.invalid && (loginForm.get('pwd')?.touched || loginForm.get('pwd')?.dirty)){
+                @if (loginForm.get('pwd')?.errors?.['required']){
+                    <div class="text-danger">
+                        Ce champ est obligatoire
+                    </div>
+                }
+             }
+        </div>
+
+        <button type="submit">Se connecter</button>
+
+        @if(errorMsg!=''){
+            <div class="text-danger">
+                {{errorMsg}}
+            </div>
+        }
+
+        <div>
+            <a href="inscription.html">Créer un compte</a>
+        </div>
+    </form>
+</main>

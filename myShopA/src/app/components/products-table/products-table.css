@@ -1,0 +1,9 @@
+.high-price{
+    color: red;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.low-price{
+    color: green;
+}

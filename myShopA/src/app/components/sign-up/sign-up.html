@@ -1,0 +1,141 @@
+<main>
+    <form class="formulaire" id="inscription-form" [formGroup]="signupForm" (ngSubmit)="signup()">
+        <h2>Inscription</h2>
+
+        <fieldset class="inscription-fieldset">
+            <legend>Informations Personnelles</legend>
+            <div>
+                <label for="nom">Nom :</label>
+                <input type="text" name="nom" id="nom" formControlName="userName" placeholder="Votre nom" required>
+                <!-- Msg Erreur -->
+                @if(signupForm.get('userName')?.invalid && (signupForm.get('userName')?.touched ||
+                signupForm.get('userName')?.dirty)){
+                @if (signupForm.get('userName')?.errors?.['required']) {
+                <div class="text-danger">
+                    Ce champ est obligatoire
+                </div>
+                }@else if (signupForm.get('userName')?.errors?.['minlength']) {
+                <div class="text-danger">
+                    Il faut entrer au min 3 caractères
+                </div>
+                }}
+            </div>
+
+            <div>
+                <label for="email">Email :</label>
+                <input type="email" id="email" formControlName="email" placeholder="exemple@gmail.com" required>
+                <!-- Msg Erreur -->
+                @if(signupForm.get('email')?.invalid && (signupForm.get('email')?.touched ||
+                signupForm.get('email')?.dirty)){
+                @if (signupForm.get('email')?.errors?.['required']) {
+                <div class="text-danger">
+                    Ce champ est obligatoire
+                </div>
+                }@else if (signupForm.get('email')?.errors?.['email']) {
+                <div class="text-danger">
+                    Il faut entrer un email de type exlpe@mail.com
+                </div>
+                }}
+            </div>
+
+            <div>
+                <label for="mdp">Mot de passe :</label>
+                <input type="password" id="mdp" formControlName="pwd" placeholder="Votre mot de passe" required>
+                <!-- Msg Erreur -->
+                @if(signupForm.get('pwd')?.invalid && (signupForm.get('pwd')?.touched || signupForm.get('pwd')?.dirty)){
+                @if (signupForm.get('pwd')?.errors?.['required']) {
+                <div class="text-danger">
+                    Ce champ est obligatoire
+                </div>
+                }@else if (signupForm.get('pwd')?.errors?.['minlength'] || signupForm.get('pwd')?.errors?.['maxlength'])
+                {
+                <div class="text-danger">
+                    le Mot de passe doit entre 6 et 10 caractères
+                </div>
+                }}
+            </div>
+
+            <div>
+                <label for="confirmMdp">Confirmer le Mot de passe :</label>
+                <input type="password" id="confirmMdp" formControlName="confirmPwd" placeholder="Confirmer votre mot de passe" required>
+                 <!-- Msg Erreur -->
+                @if(signupForm.get('confirmPwd')?.touched || signupForm.get('confirmPwd')?.dirty){
+
+                @if (signupForm.get('confirmPwd')?.errors?.['required']) {
+                <div class="text-danger">
+                    Ce champ est obligatoire
+                </div>
+                }
+                @else if (signupForm.hasError('passwordMismatch'))
+                {
+                <div class="text-danger">
+                    les Mots de passe ne sont pas identiques
+                </div>
+                }}
+            </div>
+        </fieldset>
+
+        <fieldset class="inscription-fieldset">
+            <legend>Informations Supplémentaires</legend>
+            <!-- Radio -->
+            <div>
+                <label>Genre :</label>
+                <input type="radio" id="femme" name="gender" formControlName="gender" value="femme">
+                <label for="femme"> Femme </label>
+
+                <input type="radio" id="homme" name="gender" formControlName="gender" value="homme">
+                <label for="homme"> Homme </label>
+                <!-- Msg Erreur -->
+                @if(signupForm.get('gender')?.invalid && (signupForm.get('gender')?.touched ||
+                signupForm.get('gender')?.dirty)){
+                @if (signupForm.get('gender')?.errors?.['required']) {
+                <div class="text-danger">
+                    Ce champ est obligatoire
+                </div>
+                }}
+            </div>
+
+            <!-- Checkbox -->
+            <div>
+                <label>Intérets :</label>
+                <input type="checkbox" name="interets" id="vetements" formControlName="clothes" value="vetements">
+                <label for="vetements">vetements</label>
+
+                <input type="checkbox" name="interets" id="accessoires" formControlName="accessories"
+                    value="accessoires">
+                <label for="accessoires">Accessoires</label>
+            </div>
+
+            <!-- Pays -->
+            <div>
+                <label for="pays">Pays :</label>
+                <select name="pays" id="pays" formControlName="country">
+                    <option value="france">France</option>
+                    <option value="tunisie">Tunisie</option>
+                    <option value="autre">Autre</option>
+                </select>
+                <!-- Msg Erreur -->
+                @if(signupForm.get('country')?.invalid && (signupForm.get('country')?.touched ||
+                signupForm.get('country')?.dirty)){
+                @if (signupForm.get('country')?.errors?.['required']) {
+                <div class="text-danger">
+                    Ce champ est obligatoire
+                </div>
+                }}
+            </div>
+        </fieldset>
+
+        <button type="submit" [disabled]="signupForm.invalid"
+        [class.btn-disabled]="signupForm.invalid">S'inscrire</button>
+
+        <div>
+            <p>Vous avez déjà un compte ?
+                <a href="connexion.html">Se connecter</a>
+            </p>
+        </div>
+
+    </form>
+
+    {{signupForm.value | json}} <br>
+    {{signupForm.valid | json}}
+</main>

@@ -1,0 +1,43 @@
+<main>
+<section>
+    <form id="productForm" #productForm="ngForm" (ngSubmit)="addOrEditProduct(productForm)">
+        <h2>{{ productID? 'Modifier Produit': 'Ajouter un Produit'}}</h2>
+
+        <div>
+            <label for="productName">Nom du produit : </label>
+            <input type="text" name="name" id="productName" [(ngModel)]="product.name"  
+            placeholder="Le nom de votre prouduit" #productName="ngModel" required minlength="3">
+            <!-- Msg Erreur -->
+             @if (productName.invalid && (productName.touched || productName.dirty)) {
+                @if(productName.errors?.['required']){
+                    <div class="text-danger">
+                        Ce champ est obligatoire
+                    </div>
+                }
+                @else if (productName.errors?.['minlength']){
+                    <div class="text-danger">
+                        Il faut entrer min 3 caractères
+                    </div>
+                }
+             }
+        </div>
+
+        <div>
+            <label for="productPrice">Prix : </label>
+            <input type="number" name="price" id="productPrice" [(ngModel)]="product.price" placeholder="Le prix de votre produit" required>
+        </div>
+
+        <div>
+            <label for="description" class="form-label">Description :</label>
+            <textarea id="description" name="description" [(ngModel)]="product.description" placeholder="Votre description" required></textarea>
+        </div>
+
+        <div>
+            <label for="img">Image URL : </label>
+            <input type="text" name="img" id="img" [(ngModel)]="product.img" placeholder="image URL" required>
+        </div>
+
+        <button type="submit">{{ isEditMode? 'Modifier ': 'Ajouter '}}</button>
+    </form>
+</section>
+</main>
