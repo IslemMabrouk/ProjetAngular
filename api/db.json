@@ -1,0 +1,58 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Chemise Homme",
+      "category": "Homme",
+      "price": 20,
+      "description": "Chemise en coton à manches longues.",
+      "img": "assets/images/chemise-homme.webp"
+    },
+    {
+      "id": 2,
+      "name": "Jean Homme",
+      "category": "Homme",
+      "price": 79.9,
+      "description": "Jean slim bleu confortable.",
+      "img": "assets/images/jean-homme.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Robe Femme",
+      "category": "Femme",
+      "price": 89.9,
+      "description": "Robe élégante idéale pour les soirées.",
+      "img": "assets/images/robe-femme.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Veste Femme",
+      "category": "Femme",
+      "price": 119.9,
+      "description": "Veste légère et tendance pour toutes les saisons.",
+      "img": "assets/images/veste-femme.jpg"
+    }
+  ],
+  "users": [
+    {
+      "userName": "Islem",
+      "email": "islem@gmail.com",
+      "pwd": "123456",
+      "gender": "femme",
+      "country": "tunisie",
+      "interests": [
+        "clothes",
+        "accessories"
+      ],
+      "role": "client",
+      "id": 1
+    },
+    {
+      "userName": "admin",
+      "email": "admin@gmail.com",
+      "pwd": "123456",
+      "role": "client",
+      "id": 2
+    }
+  ]
+}
