@@ -30,9 +30,15 @@ login(){
     next: (res: any) => {
       console.log(res);
       if (res.length > 0) {
-        localStorage.setItem("connectedUser", JSON.stringify(res[0]))
+        const user = res[0];
+        localStorage.setItem("connectedUser", JSON.stringify(user));
         this.errorMsg = '';
-        this.router.navigate(['']);
+        if (user.role === "admin") {
+          this.router.navigate(['/dashboard'])
+        }
+        else{
+          this.router.navigate(['']);
+        }
       } else {
         this.errorMsg = 'Email ou Mot de pase incorrect';
       }

@@ -51,7 +51,7 @@
       "userName": "admin",
       "email": "admin@gmail.com",
       "pwd": "123456",
-      "role": "client",
+      "role": "admin",
       "id": 2
     }
   ]

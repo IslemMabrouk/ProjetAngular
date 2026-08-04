@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterLink } from "@angular/router";
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -8,12 +8,19 @@ import { RouterLink } from "@angular/router";
   styleUrl: './header.css',
 })
 export class Header {
+    private router = inject(Router);
+
 title:string="My Shop";
 
 
 getConnectedUser(){
   const user =JSON.parse(localStorage.getItem('connectedUser') || 'null');
   return user
+}
+
+logOut(){
+   localStorage.removeItem('connectedUser');
+  this.router.navigate(['/login']);
 }
 
 }

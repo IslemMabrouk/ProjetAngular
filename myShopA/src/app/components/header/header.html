@@ -12,6 +12,7 @@
         <li>
             <a routerLink="/products">Produits</a>
         </li>
+        @if (getConnectedUser()?.role === "admin") {
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Dashboard
@@ -21,6 +22,7 @@
             <li><a class="dropdown-item" routerLink="/dashboard">Admin</a></li>
           </ul>
         </li>
+        }
         <!-- Si utilisateur NON connecté -->
          @if (!getConnectedUser()) {
         <li>
@@ -39,7 +41,7 @@
             <a routerLink="">
                 <i class="fa-solid fa-cart-arrow-down" title="Voir mon panier"></i>
             </a>
-            <button>
+            <button (click)="logOut()">
                 Déconnexion
             </button>
         </li>

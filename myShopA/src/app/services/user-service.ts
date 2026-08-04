@@ -32,4 +32,12 @@ export class UserService {
   // {
   //   return this.httpClient.post(this.userURL + "/login" , loginData);
   // }
+
+  deleteUserById(id:any){
+    return this.httpClient.delete(this.userURL + "/" + id);
+  }
+
+  updateUser(userObj:any){
+    return this.httpClient.put(this.userURL + "/" + userObj.id, userObj);
+  }
 }

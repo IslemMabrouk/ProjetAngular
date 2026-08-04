@@ -12,13 +12,29 @@
         @for(user of users ; track user.id; let i=$index){
         <tr>
             <th scope="row">{{user.id}}</th>
-            <td>{{user.userName}}</td>
-            <td>{{user.email}}</td>
+            <td>
+                @if (editId === user.id) {
+                <input class="form-control" [(ngModel)]="user.userName" >
+                }@else{
+                {{user.userName}}
+                }
+            </td>
+            <td>
+                @if (editId === user.id) {
+                <input class="form-control" [(ngModel)]="user.email" >
+                }@else{
+                {{user.email}}
+                }
+            </td>
             <td [style.color]="user.role==='admin'? 'red' : 'blue' ">{{user.role}}</td>
             <td class="btn-actions">
                 <button type="button" class="btn btn-primary">Voir Détails</button>
-                <button type="button" class="btn btn-success">Modifier</button>
-                <button type="button" class="btn btn-danger">Supprimer</button>
+                @if (editId === user.id) {
+                    <button type="button" class="btn btn-warning" (click)="save(user)" >Enregister</button>
+                } @else  {
+                <button type="button" class="btn btn-success" (click)="editId = user.id">Modifier</button>
+                }
+                <button type="button" class="btn btn-danger" (click)="deleteUser(user.id)">Supprimer</button>
             </td>
         </tr>
         }

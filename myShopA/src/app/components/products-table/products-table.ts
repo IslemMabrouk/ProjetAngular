@@ -19,6 +19,7 @@ export class ProductsTable {
     this.loadProducts();
   }
 
+  
   loadProducts(){
      this.productService.getAllProducts().subscribe({
       next :(res: any) => {
