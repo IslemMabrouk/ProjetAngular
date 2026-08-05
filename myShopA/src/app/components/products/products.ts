@@ -1,19 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ProductCard } from "../product-card/product-card";
-import { TransformPipe } from '../../pipes/transform-pipe';
-import { ReversePipePipe } from '../../pipes/reverse-pipe';
+import { ProductService } from '../../services/product-service';
 
 @Component({
   selector: 'app-products',
-  imports: [ProductCard, TransformPipe, ReversePipePipe],
+  imports: [ProductCard],
   templateUrl: './products.html',
   styleUrl: './products.css',
 })
 export class Products {
+  private productService = inject(ProductService)
 products:any[] = []
 
 ngOnInit(){
-this.products = JSON.parse(localStorage.getItem('products') || '[]');
+// this.products = JSON.parse(localStorage.getItem('products') || '[]');
+this.productService.getAllProducts().subscribe({
+      next :(res: any) => {
+        console.log(res);
+        
+      this.products = res;
+    },
+    error : (err) => {
+      console.log(err);
+      alert("Erreur récupération de la liste des prooduits")
+    }
+  })
 }
 
 

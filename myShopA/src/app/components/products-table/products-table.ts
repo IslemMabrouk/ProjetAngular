@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductService } from '../../services/product-service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-products-table',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './products-table.html',
   styleUrl: './products-table.css',
 })
@@ -23,6 +24,8 @@ export class ProductsTable {
   loadProducts(){
      this.productService.getAllProducts().subscribe({
       next :(res: any) => {
+        console.log(res);
+        
       this.products = res;
     },
     error : (err) => {
