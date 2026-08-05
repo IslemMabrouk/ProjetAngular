@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ProductCard } from "../product-card/product-card";
 import { ProductService } from '../../services/product-service';
+import { map, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-products',
@@ -11,14 +12,32 @@ import { ProductService } from '../../services/product-service';
 export class Products {
   private productService = inject(ProductService)
 products:any[] = []
+filteredProducts:any[]=[];
+
+searchSubject = new Subject<string>();
 
 ngOnInit(){
 // this.products = JSON.parse(localStorage.getItem('products') || '[]');
+this.loadProduct();
+
+this.searchSubject.pipe(
+  map(value =>
+    this.products.filter(product=>
+      product.name.toLowerCase().includes(value.toLocaleLowerCase())
+    )
+  )
+).subscribe(result => {
+  this.filteredProducts =result;
+})
+}
+
+loadProduct(){
 this.productService.getAllProducts().subscribe({
       next :(res: any) => {
         console.log(res);
         
       this.products = res;
+      this.filteredProducts=res;
     },
     error : (err) => {
       console.log(err);
@@ -27,6 +46,9 @@ this.productService.getAllProducts().subscribe({
   })
 }
 
+search(value:string){
+  this.searchSubject.next(value);
+}
 
 onDeleteProduct(id:number){
 console.log("Hello form product.ts", id);
