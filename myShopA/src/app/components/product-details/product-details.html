@@ -8,7 +8,7 @@
                 <h2>{{product.name}}</h2>
                 <p>{{product.description}}</p>
                 <p>Prix : {{product.price}} £</p>
-                <button id="ajout-panier">Ajouter au panier</button>
+                <button id="ajout-panier" (click)="addTocart(product)">Ajouter au panier</button>
             </div>
 
         </div>

@@ -39,7 +39,12 @@
         <li class="user-menu">
             <span>Bonjour {{getConnectedUser().userName}}</span>
             <a routerLink="">
-                <i class="fa-solid fa-cart-arrow-down" title="Voir mon panier"></i>
+                <div  class="cart">
+                    <i class="fa-solid fa-cart-arrow-down" title="Voir mon panier"></i>
+                    @if (cartService.cartCount()>0) {
+                        <span class="badge-cart">{{cartService.cartCount()}}</span>
+                    }
+                </div>
             </a>
             <button (click)="logOut()">
                 Déconnexion

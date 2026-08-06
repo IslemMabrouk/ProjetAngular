@@ -2,7 +2,8 @@
     <h2>Nos Produits</h2>
     <!-- <h2>{{'Nos Produits' | transform}}</h2> -->
     <!-- <h2>{{'Nos Produits' | reversePipe}}</h2> -->
-     <input type="text" placeholder="Rechercher..." (input)="search($event.target.value)">
+     <input type="text" placeholder="Rechercher..." 
+     (input)="search($event.target.value)">
     <div class="product-container">
         @for(product of filteredProducts; track product.id; let i=$index){
         <app-product-card [productInput]="product" (deleteProd)="onDeleteProduct($event)" ></app-product-card>

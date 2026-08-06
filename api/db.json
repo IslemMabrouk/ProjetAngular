@@ -15,7 +15,7 @@
       "category": "Homme",
       "price": 79.9,
       "description": "Jean slim bleu confortable.",
-      "img": "assets/images/jean-homme.jpg",
+      "img": "assets/images/jean-homme.jfif",
       "stock":0
     },
     {
@@ -33,7 +33,7 @@
       "category": "Femme",
       "price": 119.9,
       "description": "Veste légère et tendance pour toutes les saisons.",
-      "img": "assets/images/veste-femme.jpg",
+      "img": "assets/images/veste-femme.webp",
       "stock":1
     }
   ],

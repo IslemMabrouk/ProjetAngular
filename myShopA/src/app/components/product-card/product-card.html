@@ -9,5 +9,5 @@
     <img [src]="productInput.img" alt="Photo du {{productInput.name}}">
     <p>{{productInput.description}}</p>
     <p>Prix: {{productInput.price}} £</p>
-    <button type="button">Acheter</button>
+    <button type="button" (click)="goToProductDetails(productInput.id)">Voir Détails</button>
 </article>

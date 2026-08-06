@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../services/product-service';
+import { CartService } from '../../services/cart-service';
 
 @Component({
   selector: 'app-product-details',
@@ -11,6 +12,7 @@ import { ProductService } from '../../services/product-service';
 export class ProductDetails {
 private activatedRoute = inject(ActivatedRoute);
 private productServcie = inject(ProductService);
+private cartService = inject(CartService);
 
 productID!:number;
 products:any[]=[];
@@ -32,7 +34,10 @@ ngOnInit(){
   //Utilisation du localStorage
   // this.products = JSON.parse(localStorage.getItem('products') || '[]');
   // this.product = this.products.find((p:any) => p.id == this.productId);
-  
 }
+
+  addTocart(productObj:any) {
+    this.cartService.addToCart(productObj);
+  }
 
 }
