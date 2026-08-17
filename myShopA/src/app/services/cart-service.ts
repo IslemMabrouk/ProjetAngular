@@ -16,23 +16,93 @@ export class CartService {
   }
 
 
-  addToCart(productObj:any){
+  addToCart(productObj: any) {
 
-    //Ajouter le nouveau produit
-    this.cart.update(products =>{
+  this.cart.update(products => {
 
-      const newCart = [
+    // Chercher si le produit existe déjà
+    const existingProduct = products.find(
+      product => product.product.id === productObj.id
+    );
+
+    let newCart;
+
+    if (existingProduct) {
+
+      // Le produit existe → augmenter la quantité
+      newCart = products.map(product => {
+
+        if (product.product.id === productObj.id) {
+          return {
+            ...product,
+            quantity: product.quantity + 1
+          };
+        }
+
+        return product;
+      });
+
+    } else {
+
+      // Nouveau produit → quantité = 1
+      newCart = [
         ...products,
-        productObj
+        {
+          product: productObj,
+          quantity: 1
+        }
       ];
+    }
 
-      localStorage.setItem("cart", JSON.stringify(newCart));
+    localStorage.setItem(
+      "cart",
+      JSON.stringify(newCart)
+    );
+
+    return newCart;
+  });
+}
+
+  cartCount = computed(() => {
+  return this.cart().reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
+});
+
+
+  removeFromCart(id:number){
+
+    this.cart.update(products=>{
+
+
+      const newCart =
+      products.filter(
+        product=>product.id!==id
+      );
+
+
+      localStorage.setItem(
+        "cart",
+        JSON.stringify(newCart)
+      );
+
 
       return newCart;
+
+
     });
+
+
   }
 
-  cartCount = computed(()=>{
-    return this.cart().length;
-  });
+
+
+  clearCart(){
+
+    this.cart.set([]);
+
+    localStorage.removeItem("cart");
+
+  }
 }

@@ -38,7 +38,7 @@
          @if (getConnectedUser()) {
         <li class="user-menu">
             <span>Bonjour {{getConnectedUser().userName}}</span>
-            <a routerLink="">
+            <a routerLink="/cart">
                 <div  class="cart">
                     <i class="fa-solid fa-cart-arrow-down" title="Voir mon panier"></i>
                     @if (cartService.cartCount()>0) {

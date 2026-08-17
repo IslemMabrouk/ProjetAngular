@@ -1,0 +1,95 @@
+/* Titre */
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #212529;
+}
+
+/* Conteneur du tableau */
+.table {
+  position: relative;
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  margin-bottom: 0;
+}
+
+/* En-tête */
+.table thead th {
+  padding: 18px 20px;
+  font-weight: 600;
+  vertical-align: middle;
+  border: none;
+}
+
+/* Lignes */
+.table tbody td {
+  padding: 18px 20px;
+  vertical-align: middle;
+  border-color: #f0f0f0;
+}
+
+.fa-circle-xmark {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: red;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+
+/* Bouton supprimer */
+
+.btn-danger:hover {
+  transform: translateY(-1px);
+}
+
+
+/* Total */
+.table tbody tr:last-child strong {
+  font-size: 1.2rem;
+  color: #198754;
+}
+
+/* Bouton Commander */
+.btn-success:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(25, 135, 84, 0.25);
+}
+
+/* Panier vide */
+.table tbody tr td[colspan="5"] {
+  padding: 20px 20px;
+  color: #6c757d;
+  font-size: 1.1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  main {
+    margin: 30px auto;
+    padding: 0 10px;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  .table {
+    font-size: 0.9rem;
+  }
+
+  .table thead th,
+  .table tbody td {
+    padding: 12px 8px;
+  }
+
+  .btn-danger,
+  .btn-success {
+    padding: 7px 10px;
+    font-size: 0.8rem;
+  }
+}

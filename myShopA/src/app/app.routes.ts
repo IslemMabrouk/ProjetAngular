@@ -8,6 +8,7 @@ import { SignUp } from './components/sign-up/sign-up';
 import { Login } from './components/login/login';
 import { ProductDetails } from './components/product-details/product-details';
 import { adminGuardGuard } from './guards/admin-guard-guard';
+import { Cart } from './components/cart/cart';
 
 export const routes: Routes = [
     {path: '', component:Home},
@@ -15,8 +16,10 @@ export const routes: Routes = [
     {path: 'about', component:About},
     {path: 'dashboard', component:Dashboard, canActivate:[adminGuardGuard]},
     {path: 'addProduct', component:AddProduct, canActivate:[adminGuardGuard]},
+    {path: 'editProduct/:id', component:AddProduct, canActivate:[adminGuardGuard]},
     {path: 'signup', component:SignUp},
     {path: 'login', component:Login},
     {path: 'productDetails/:id', component:ProductDetails},
-    {path: 'editProduct/:id', component:AddProduct, canActivate:[adminGuardGuard]}
+    {path: 'cart', component:Cart}
+    
 ];
