@@ -6,10 +6,10 @@ export const addProduct = async (req, res) => {
         //Récupération des données à partir de la requete
         // const product = new Product(req.body);
         const product = new Product({
-            nom : req.body.nom,
-            prix : req.body.prix,
+            nom : req.body.name,
+            prix : req.body.price,
             description : req.body.description,
-            imgURl : req.body.imgURl
+            imgURl : req.body.img
         })
 
         //Sauvgarde de l'obj Produit
@@ -93,3 +93,17 @@ export const updateProduct = async (req, res) => {
 }
 
 //Supprimer un produit
+export const deleteProductById = async (req,res) => {
+    try {
+        const product = await Product.findByIdAndDelete(req.params.id);
+        if(!product) return res.status(404).json({message : "Produit Introvable !"});
+        res.status(200).json({
+            message: "Produit Supprimé !"
+        })
+    } catch (error) {
+        res.status(500).json({
+            message : "Erreur lors de la suppression d'un produit",
+            error : error.message
+        })
+    }
+}

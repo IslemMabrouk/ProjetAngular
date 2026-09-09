@@ -8,7 +8,7 @@ import { map } from 'rxjs';
 export class ProductService {
 
   //Destination /Adresse
-  productURL: string = 'http://localhost:3000/products'
+  productURL: string = 'http://localhost:3000/api/products'
 
   //Livreur
   private httpClient = inject(HttpClient)

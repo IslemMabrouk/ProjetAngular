@@ -15,7 +15,7 @@ export const routes: Routes = [
     {path: 'products', component:Products},
     {path: 'about', component:About},
     {path: 'dashboard', component:Dashboard, canActivate:[adminGuardGuard]},
-    {path: 'addProduct', component:AddProduct, canActivate:[adminGuardGuard]},
+    {path: 'addProduct', component:AddProduct},
     {path: 'editProduct/:id', component:AddProduct, canActivate:[adminGuardGuard]},
     {path: 'signup', component:SignUp},
     {path: 'login', component:Login},
