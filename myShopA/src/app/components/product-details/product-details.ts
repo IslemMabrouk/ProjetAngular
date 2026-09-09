@@ -14,13 +14,13 @@ private activatedRoute = inject(ActivatedRoute);
 private productServcie = inject(ProductService);
 private cartService = inject(CartService);
 
-productID!:number;
+productID!:string| null;
 products:any[]=[];
 product:any={};
 
 
 ngOnInit(){
-  this.productID = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+  this.productID = this.activatedRoute.snapshot.paramMap.get('id');
 
   this.productServcie.getProductById(this.productID).subscribe({
     next : (res:any) => {

@@ -15,6 +15,10 @@ export const validateProduct = (req, res, next) => {
         description: Joi.string().max(200).optional().messages({
              "string.base": "La description doit etre une chaine de caractère",
              "string.max": "La description ne doit pas dépasser 200 caractères"
+        }),
+        imgURL: Joi.string().required().messages({
+             "string.base": "L'URL doit etre une chaine de caractère",
+             "any.required": "L'URL est obligatoire"
         })
     });
 

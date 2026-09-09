@@ -22,9 +22,9 @@
              <td [style]="getPriceStyle(product.price)">{{product.price}} £</td>
              <td>{{product.priceWithTax | number: '1.2-2'}}</td>
             <td class="btn-actions">
-                <button type="button" class="btn btn-primary" (click)="goToProductDetails(product.id)">Voir Détails</button>
-                <button type="button" class="btn btn-success" (click)="goToEditProduct(product.id)">Modifier</button>
-                <button type="button" class="btn btn-danger" (click)="deleteProduct(product.id)">Supprimer</button>
+                <button type="button" class="btn btn-primary" (click)="goToProductDetails(product._id)">Voir Détails</button>
+                <button type="button" class="btn btn-success" (click)="goToEditProduct(product._id)">Modifier</button>
+                <button type="button" class="btn btn-danger" (click)="deleteProduct(product._id)">Supprimer</button>
             </td>
         </tr>
         }

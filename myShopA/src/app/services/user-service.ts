@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class UserService {
 
     //Destination /Adresse
-  userURL: string = 'http://localhost:3000/users'
+  userURL: string = 'http://localhost:3000/api/users'
 
   //Livreur
   private httpClient = inject(HttpClient)

@@ -6,8 +6,8 @@
     }
     <i class="fa-solid fa-trash" (click)="delete(productInput.id)"></i>
     <h3 class="titre-produit">{{productInput.name}}</h3>
-    <img [src]="productInput.img" alt="Photo du {{productInput.name}}">
+    <img [src]="productInput.imgURL" alt="Photo du {{productInput.name}}">
     <p>{{productInput.description}}</p>
     <p>Prix: {{productInput.price}} £</p>
-    <button type="button" (click)="goToProductDetails(productInput.id)">Voir Détails</button>
+    <button type="button" (click)="goToProductDetails(productInput._id)">Voir Détails</button>
 </article>

@@ -15,20 +15,19 @@ export class AddProduct {
 
 products:any[]=[];
 product= {
-  id: 0,
   name:'',
   price:'',
   description:'',
   img:''
 }
-productID!:number;
+productID!:string | null;
 isEditMode = false;
 
 ngOnInit(){
   //Récupérer les données du localstorage
 // this.products = JSON.parse(localStorage.getItem('products') || '[]');
 
-this.productID = Number(this.acivatedroute.snapshot.paramMap.get('id'));
+this.productID = this.acivatedroute.snapshot.paramMap.get('id');
 console.log(this.productID );
 
 if (this.productID) {

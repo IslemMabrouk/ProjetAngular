@@ -1,23 +1,26 @@
 import mongoose from "mongoose";
 
 const productSchema = new mongoose.Schema({
-    nom : {
+    name : {
         type:String,
         required:true,
         minlength:3,
         maxlength:10,
         trim:true, //supprimer les espaces inutiles au début et à la fin d'une chanie de caractères
     },
-    prix : {
+    price : {
         type:Number,
         required: true,
     },
     description: {
         type: String,
         required:true,
-        minlength:100
+        minlength:10
     },
-    imgURL : String,
+    imgURL : {
+        type: String,
+        required:true,
+    },
     createdAt : {
         type : Date,
         default:Date.now

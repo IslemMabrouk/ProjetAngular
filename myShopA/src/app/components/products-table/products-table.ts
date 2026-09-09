@@ -48,7 +48,7 @@ export class ProductsTable {
     this.productService.deleteProductById(id).subscribe({
       next: (res: any) => {
         this.loadProducts();
-        alert("Pdoruit Supprimé avec succès!")
+        alert("Produit Supprimé avec succès!")
       },
       error: (err) => {
         console.log(err);

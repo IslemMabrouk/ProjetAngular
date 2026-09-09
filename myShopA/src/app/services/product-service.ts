@@ -58,7 +58,7 @@ export class ProductService {
 
   //Reponse : String || boolean || productObj + id 
   updateProduct(productObj:any){
-    return this.httpClient.put(this.productURL + "/" + productObj.id, productObj);
+    return this.httpClient.put(this.productURL + "/" + productObj._id, productObj);
   }
 
   

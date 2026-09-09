@@ -19,6 +19,8 @@ searchSubject = new Subject<string>();
 ngOnInit(){
 // this.products = JSON.parse(localStorage.getItem('products') || '[]');
 this.loadProduct();
+console.log(this.products );
+
 
 this.searchSubject.pipe(
   map(value =>
@@ -41,7 +43,7 @@ this.productService.getAllProducts().subscribe({
     },
     error : (err) => {
       console.log(err);
-      alert("Erreur récupération de la liste des prooduits")
+      // alert("Erreur récupération de la liste des prooduits")
     }
   })
 }

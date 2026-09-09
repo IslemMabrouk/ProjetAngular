@@ -6,10 +6,10 @@ export const addProduct = async (req, res) => {
         //Récupération des données à partir de la requete
         // const product = new Product(req.body);
         const product = new Product({
-            nom : req.body.name,
-            prix : req.body.price,
+            name : req.body.name,
+            price : req.body.price,
             description : req.body.description,
-            imgURl : req.body.img
+            imgURL : req.body.imgURL
         })
 
         //Sauvgarde de l'obj Produit
