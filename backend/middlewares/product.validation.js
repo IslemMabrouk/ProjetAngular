@@ -19,6 +19,10 @@ export const validateProduct = (req, res, next) => {
         imgURL: Joi.string().required().messages({
              "string.base": "L'URL doit etre une chaine de caractère",
              "any.required": "L'URL est obligatoire"
+        }),
+        stock: Joi.number().required().messages({
+            "number.base": "Le stock doit etre un nombre",
+            "any.required": "Stock est obligatoire"
         })
     });
 

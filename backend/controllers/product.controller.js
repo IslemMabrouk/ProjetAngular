@@ -9,7 +9,8 @@ export const addProduct = async (req, res) => {
             name : req.body.name,
             price : req.body.price,
             description : req.body.description,
-            imgURL : req.body.imgURL
+            imgURL : req.body.imgURL,
+            stock: req.body.stock
         })
 
         //Sauvgarde de l'obj Produit
