@@ -1,7 +1,7 @@
 import Product from "../models/product.model.js"
 
 //Ajouter un produit
-export const addProduct = async (req, res) => {
+export const addProduct = async (req, res, next) => {
     try {
         //Récupération des données à partir de la requete
         // const product = new Product(req.body);
@@ -23,50 +23,49 @@ export const addProduct = async (req, res) => {
         });
         
     } catch (error) {
-        res.status(500).json({
-            message : "Erreur lors de l'ajout du produit",
-            error : error.message
-        })
+        error.message = "Erreur lors de l'ajout du produit";
+        error.statusCode = 500;
+        next(error);
     }
 }
 
 //Récupérer la liste des produits
-export const getAllProducts = async (req, res) => {
+export const getAllProducts = async (req, res, next) => {
     try {
         
         const products = await Product.find();
         res.status(200).json(products);
 
     } catch (error) {
-         res.status(500).json({
-            message : "Erreur lors de la récupération de la liste des produits",
-            error : error.message
-        })
+        next(error);
     }
 }
 
 //Récupérer un seul produt par ID
-export const getProductByID = async (req, res) => {
+export const getProductByID = async (req, res, next) => {
     try {
         
         const product = await Product.findById(req.params.id);
 
         if (!product) {
-            return res.status(404).json({message : "Produit Introvable !"})
+            // return res.status(404).json({message : "Produit Introvable !"});
+            const error = new Error("Produit Introvable !");
+            error.statusCode = 404;
+            throw error;
         }
 
         res.status(200).json(product);
 
     } catch (error) {
-         res.status(500).json({
-            message : "Erreur lors de la récupération d'un produit",
-            error : error.message
-        })
+        if(!error.message){
+        error.message = "Erreur lors de la récupération du produit par ID";
+        }
+        next(error);
     }
 }
 
 //Modifier un poduit
-export const updateProduct = async (req, res) => {
+export const updateProduct = async (req, res, next) => {
     try {
         
         //Trouver produit par son ID et le modifier
@@ -86,15 +85,12 @@ export const updateProduct = async (req, res) => {
         })
 
     } catch (error) {
-         res.status(500).json({
-            message : "Erreur lors de la modification d'un produit",
-            error : error.message
-        })
+         next(error);
     }
 }
 
 //Supprimer un produit
-export const deleteProductById = async (req,res) => {
+export const deleteProductById = async (req,res, next) => {
     try {
         const product = await Product.findByIdAndDelete(req.params.id);
         if(!product) return res.status(404).json({message : "Produit Introvable !"});
@@ -102,9 +98,6 @@ export const deleteProductById = async (req,res) => {
             message: "Produit Supprimé !"
         })
     } catch (error) {
-        res.status(500).json({
-            message : "Erreur lors de la suppression d'un produit",
-            error : error.message
-        })
+        next(error);
     }
 }
