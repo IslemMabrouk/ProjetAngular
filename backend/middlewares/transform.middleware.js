@@ -11,5 +11,8 @@ export const transformProduct = (req, res, next) => {
     //Si le client n'envoie pas de stock
     if (req.body.stock === undefined) req.body.stock = 0;
 
+    //Convertir une chaine en nombre
+    if (req.body.price) req.body.price = Number(req.body.price);
+
     next();
 }
