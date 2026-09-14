@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(corsMiddleware);
 
 //Routes
-app.use("/Hello", userRoutes);
+app.use("/api", userRoutes);
 app.use("/api", productRoutes);
 
 
